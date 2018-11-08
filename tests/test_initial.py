@@ -1,6 +1,7 @@
 import unittest
 from flask import Flask
 from ..run import app, api, Api
+from ..sendit.views.index_view import Index
 
 class TestApi(unittest.TestCase):
     """ Class to test api."""
