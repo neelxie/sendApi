@@ -1,6 +1,6 @@
 import unittest
 from flask import Flask
-from ..sendit.models.user_model import Users
+from sendit.models.user_model import Users
 
 class Test_Datasets(unittest.TestCase):
     """ Test class to test data structures used in app."""

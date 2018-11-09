@@ -1,7 +1,12 @@
 import unittest
 from flask import Flask
-from ..run import app, api, Api
-from ..sendit.views.index_view import Index
+from flask_restful import Api
+# from sendit import app
+from sendit import create_app
+from sendit.routes import api
+from sendit.views.index_view import Index
+
+app = create_app()
 
 class TestApi(unittest.TestCase):
     """ Class to test api."""
@@ -12,7 +17,7 @@ class TestApi(unittest.TestCase):
     def test_index(self):
         """ Test index resource."""
         with self.app as derek:
-            resp = derek.get('/')
+            resp = derek.get('http://127.0.0.1:5000/api/v1/')
             self.assertEqual(resp.data, b'{"message": "This is my Index Page."}\n')
 
     def test_api(self):
