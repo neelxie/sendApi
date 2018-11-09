@@ -15,7 +15,12 @@ users_record.users_list = [
         "user_id": 2,
         "user_email": "derek@fbi.gov",
         "user_name": "Derek"
-    } 
+    },
+    {
+        "user_id": 3,
+        "user_email": "hack@cia.gov",
+        "user_name": "Haqa"
+    }
 ]
 
 def get_user_by_id(user_id):

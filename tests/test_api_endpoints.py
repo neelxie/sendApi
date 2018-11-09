@@ -1,4 +1,5 @@
 import unittest
+import json
 from sendit import app
 
 class Test_endpoints(unittest.TestCase):
@@ -41,3 +42,170 @@ class Test_endpoints(unittest.TestCase):
         with self.app as derek:
             resp = derek.get('/api/v1/users')
             self.assertEqual(resp.status_code, 200)
+
+    """ Test parcel creation endpoint """
+
+    def test_api_parcel_creation(self):
+        with self.app as c:
+            resp = c.post('http://127.0.0.1:5000/api/v1/parcels', data=json.dumps({"parcel_id": 1, "user_id": 2,"user_email": "derek@fbi.gov","parcel_weight": 15,"pick_up_location": "kisasi",
+        "destination": "Andela","price_quote": 200,"status": "Transit"}), content_type='application/json')
+            self.assertEqual(resp.status_code, 201)
+
+    def test_authenticate_parcel_user_id_missing(self):
+        with self.app as c:
+            resp = c.post('http://127.0.0.1:5000/api/v1/parcels', data=json.dumps(
+                {"parcel_id": 1, "user_email": "derek@fbi.gov","parcel_weight": 15,"pick_up_location": "kisasi",
+        "destination": "Andela","price_quote": 200,"status": "Transit"}), content_type='application/json')
+            self.assertEqual(resp.data, b'{"message": {"user_id": "user_id has to be an int."}}\n')
+
+    def test_authenticate_parcel_id(self):
+        with self.app as c:
+            resp = c.post('http://127.0.0.1:5000/api/v1/parcels', data=json.dumps(
+                {"parcel_id": "sff", "user_id": 2,"user_email": "derek@fbi.gov","parcel_weight": 15,"pick_up_location": "kisasi",
+        "destination": "Andela","price_quote": 200,"status": "Transit"}), content_type='application/json')
+            self.assertEqual(resp.data, b'{"message": {"parcel_id": "parcel_id has to be an int."}}\n')
+
+    def test_authenticate_parcel_id_missing(self):
+        with self.app as c:
+            resp = c.post('http://127.0.0.1:5000/api/v1/parcels', data=json.dumps(
+                {"user_id": 2,"user_email": "derek@fbi.gov","parcel_weight": 15,"pick_up_location": "kisasi",
+        "destination": "Andela","price_quote": 200,"status": "Transit"}), content_type='application/json')
+            self.assertEqual(resp.data, b'{"message": {"parcel_id": "parcel_id has to be an int."}}\n')
+
+    def test_authenticate_parcel_id_space(self):
+        with self.app as c:
+            resp = c.post('http://127.0.0.1:5000/api/v1/parcels', data=json.dumps(
+                {"parcel_id": " ", "user_id": 2,"user_email": "derek@fbi.gov","parcel_weight": 15,"pick_up_location": "kisasi",
+        "destination": "Andela","price_quote": 200,"status": "Transit"}), content_type='application/json')
+            self.assertEqual(resp.data, b'{"message": {"parcel_id": "parcel_id has to be an int."}}\n')
+
+    def test_authenticate_parcel_user_id(self):
+        with self.app as c:
+            resp = c.post('http://127.0.0.1:5000/api/v1/parcels', data=json.dumps(
+                {"parcel_id": 1, "user_id": "","user_email": "derek@fbi.gov","parcel_weight": 15,"pick_up_location": "kisasi",
+        "destination": "Andela","price_quote": 200,"status": "Transit"}), content_type='application/json')
+            self.assertEqual(resp.data, b'{"message": {"user_id": "user_id has to be an int."}}\n')
+
+
+    def test_authenticate_parcel_weight(self):
+        with self.app as c:
+            resp = c.post('http://127.0.0.1:5000/api/v1/parcels', data=json.dumps(
+                {"parcel_id": 1, "user_id": 2,"user_email": "derek@fbi.gov","parcel_weight": "gf","pick_up_location": "kisasi",
+                "destination": "Andela","price_quote": 200,"status": "Transit"}), content_type='application/json')
+            self.assertEqual(resp.data, b'{"message": {"parcel_weight": "parcel_weight has to be an int."}}\n')
+
+
+    def test_authenticate_parcel_price_quote(self):
+        with self.app as c:
+            resp = c.post('http://127.0.0.1:5000/api/v1/parcels', data=json.dumps(
+                {"parcel_id": 1, "user_id": 2,"user_email": "derek@fbi.gov","parcel_weight": 15,"pick_up_location": "kisasi",
+                         "destination": "Andela","price_quote": "ffg","status": "Transit"}), content_type='application/json')
+            self.assertEqual(resp.data, b'{"message": {"price_quote": "price_quote has to be an int."}}\n')
+
+
+    def test_authenticate_parcel_location(self):
+        with self.app as c:
+            resp = c.post('http://127.0.0.1:5000/api/v1/parcels', data=json.dumps(
+                {"parcel_id": 1, "user_id": 2,"user_email": "derek@fbi.gov","parcel_weight": 15,"pick_up_location": "kisasi",
+                         "destination": "24563","price_quote": 200,"status": "Transit"}), content_type='application/json')
+            self.assertEqual(resp.data, b'{"msg": "Location should only be a string."}\n')
+
+    def test_authenticate_parcel_status_missing(self):
+        with self.app as c:
+            resp = c.post('http://127.0.0.1:5000/api/v1/parcels', data=json.dumps(
+                {"parcel_id": 1, "user_id": 2,"user_email": "derek@fbi.gov","parcel_weight": 15,"pick_up_location": "kisasi",
+                         "destination": "Andela","price_quote": 200,}), content_type='application/json')
+            self.assertEqual(resp.data, b'{"message": {"status": "Status has to be a valid string"}}\n')
+
+
+    """ Test get all parcels endpoint """
+
+    def test_get_all_parcels(self):
+        with self.app as c:
+            response = c.get('http://127.0.0.1:5000/api/v1/parcels')
+            self.assertEqual(response.status_code, 200)
+
+    def test_get_all_user_by_id(self):
+        with self.app as c:
+            response = c.get('http://127.0.0.1:5000/api/v1/users/1')
+            self.assertEqual(response.status_code, 200)
+
+    def test_get_all_user_parcels(self):
+        with self.app as c:
+            response = c.get('http://127.0.0.1:5000/api/v1/users/1/parcels')
+            self.assertEqual(response.status_code, 200)
+
+    def test_get_all_nonexistant_user_parcels(self):
+        with self.app as c:
+            response = c.get('http://127.0.0.1:5000/api/v1/users/9/parcels')
+            self.assertEqual(response.data, b'{"error": "User not found"}\n')
+            self.assertEqual(response.status_code, 200)
+
+    def test_get_user_with_zero_parcels(self):
+        with self.app as c:
+            response = c.get('http://127.0.0.1:5000/api/v1/users/3/parcels')
+            self.assertEqual(response.data, b'{"message": "User has no parcels yet."}\n')
+
+    def test_get_a_parcel_by_id(self):
+        with self.app as c:
+            response = c.get('http://127.0.0.1:5000/api/v1/parcels/1')
+            self.assertEqual(response.status_code, 200)
+
+    def test_cancel_delivery_transit(self):
+        response = self.app.post('http://127.0.0.1:5000/api/v1/parcels', data=json.dumps(
+                {"parcel_id": 1, "user_id": 2,"user_email": "derek@fbi.gov","parcel_weight": 15,"pick_up_location": "kisasi",
+        "destination": "Andela","price_quote": 200,"status": "Transit"}), content_type='application/json')
+        response = self.app.put('http://127.0.0.1:5000/api/v1/parcels/1/cancel', data=json.dumps(
+                {"parcel_id": 1, "user_id": 2,"user_email": "derek@fbi.gov","parcel_weight": 15,"pick_up_location": "kisasi",
+        "destination": "Andela","price_quote": 200,"status": "Transit"}), content_type='application/json')
+        self.assertEqual(response.status_code, 200)
+
+    def test_cancel_delivery_canceled(self):
+        response = self.app.post('http://127.0.0.1:5000/api/v1/parcels', data=json.dumps(
+                {"parcel_id": 1, "user_id": 2,"user_email": "derek@fbi.gov","parcel_weight": 15,"pick_up_location": "kisasi",
+        "destination": "Andela","price_quote": 200,"status": "Transit"}), content_type='application/json')
+        response = self.app.put('http://127.0.0.1:5000/api/v1/parcels/1/cancel', data=json.dumps(
+                {"parcel_id": 1, "user_id": 2,"user_email": "derek@fbi.gov","parcel_weight": 15,"pick_up_location": "kisasi",
+        "destination": "Andela","price_quote": 200,"status": "Canceled"}), content_type='application/json')
+        self.assertEqual(response.data, b'{"error": "Can not cancel an already canceled parcel order."}\n')
+
+    def test_cancel_nonexistant_parcel_delivery(self):
+        response = self.app.post('http://127.0.0.1:5000/api/v1/parcels', data=json.dumps(
+                {"parcel_id": 1, "user_id": 2,"user_email": "derek@fbi.gov","parcel_weight": 15,"pick_up_location": "kisasi",
+        "destination": "Andela","price_quote": 200,"status": "Transit"}), content_type='application/json')
+        response = self.app.put('http://127.0.0.1:5000/api/v1/parcels/9/cancel', data=json.dumps(
+                {"parcel_id": 1, "user_id": 2,"user_email": "derek@fbi.gov","parcel_weight": 15,"pick_up_location": "kisasi",
+        "destination": "Andela","price_quote": 200,"status": "Canceled"}), content_type='application/json')
+        self.assertEqual(response.data, b'{"error": "Can not cancel non existant parcel order."}\n')
+
+    def test_get_parcel_by_wrong_id(self):
+        with self.app as c:
+            response = c.get('http://127.0.0.1:5000/api/v1/parcels/9')
+            self.assertEqual(response.data, b'{"error": "parcel not found"}\n')
+
+    def test_parcels_record_creation(self):
+        with self.app as c:
+            response = c.post('http://127.0.0.1:5000/api/v1/parcels', data=json.dumps(
+                {"parcel_id": 1, "user_id": 2,"user_email": "derek@fbi.gov","parcel_weight": 15,"pick_up_location": "kisasi",
+        "destination": "Andela","price_quote": 200,"status": "Transit"}), content_type='application/json')
+            self.assertEqual(response.status_code, 201)
+
+
+    def test_retrieve_all_parcel_records(self):
+        with self.app as c:
+            response = c.get('http://127.0.0.1:5000/api/v1/parcels')
+            self.assertEqual(response.status_code, 200)
+
+    def test_get_parcel_record_given_an_id(self):
+        with self.app as c:
+            response = c.get('http://127.0.0.1:5000/api/v1/parcels/2')
+            self.assertEqual(response.status_code, 200)
+
+    def test_nonexistant_parcel(self):
+        with self.app as c:
+            response = c.get('http://127.0.0.1:5000/api/v1/parcels/<parcel_id>')
+            self.assertEqual(response.status_code, 404)
+
+
+    def tearDown(self):
+        pass
