@@ -75,16 +75,32 @@ class UserParcels(Resource):
                 return {"message": "User has no parcels yet."}
         return {"error": "User not found"}
 
+class CancelParcel(Resource):
+    """ Resource fro canceling an order."""
 
-requester = RequestParser(bundle_errors=True)
-requester.add_argument("parcel_id", type=int, default=1, required=True, help="id has to be an int.")
-requester.add_argument("user_id", type=int, default=1, required=True, help="id has to be an int.")
-requester.add_argument("user_email", type=str, required=True, help="Name has to be valid string.")
-requester.add_argument("parcel_weight", type=int, default=1, required=True, help="id has to be an int.")
-requester.add_argument("pick_up_location", type=str, required=True, help="Role has to be a valid string")
-requester.add_argument("destination", type=str, required=True, help="Role has to be a valid string")
-requester.add_argument("price_quote", type=int, default=1, required=True, help="id has to be an int.")
-requester.add_argument("status", type=str, required=True, help="Role has to be a valid string")
+    def put(self, parcel_id):
+        """ Method to cancel a parcel by ID."""
+        args = parser.parse_args()
+        parcel = get_parcel_by_id(parcel_id)
+        if parcel:
+            if args["status"] == "Canceled":
+                return {"error": "Can not cancel an already canceled parcel order."}
+            parcels_record.parcels_list.remove(parcel)
+            args["status"] = "Canceled"
+            parcels_record.parcels_list.append(args)
+            return {"msg": "Parcel delivery order canceled.", "User_info": args}
+        return {"error": "Can not cancel non existant parcel order."}
+
+
+parser = RequestParser(bundle_errors=True)
+parser.add_argument("parcel_id", type=int, default=1, required=True, help="id has to be an int.")
+parser.add_argument("user_id", type=int, default=1, required=True, help="id has to be an int.")
+parser.add_argument("user_email", type=str, required=True, help="Name has to be valid string.")
+parser.add_argument("parcel_weight", type=int, default=1, required=True, help="id has to be an int.")
+parser.add_argument("pick_up_location", type=str, required=True, help="Role has to be a valid string")
+parser.add_argument("destination", type=str, required=True, help="Role has to be a valid string")
+parser.add_argument("price_quote", type=int, default=1, required=True, help="id has to be an int.")
+parser.add_argument("status", type=str, required=True, help="Role has to be a valid string")
 
 
 class AllParcels(Resource):
@@ -97,8 +113,8 @@ class AllParcels(Resource):
 
     def post(self):
         """ Method to add an parcel in the record."""
-        args = requester.parse_args()
+        args = parser.parse_args()
         args["parcel_id"] = len(parcels_record.parcels_list) + 1
         args["status"] = "Transit"
         parcels_record.parcels_list.append(args)
-        return {"msg": "User added", "User_info": args}
+        return {"msg": "Parcel order delivered added", "User_info": args}
