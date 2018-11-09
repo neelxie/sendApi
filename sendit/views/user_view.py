@@ -4,8 +4,8 @@ from ..models.user_model import Users
 
 users_record = Users()
 
-users_record.users_list = []
-users_record.users_lis = [ 
+# users_record.users_list = []
+users_record.users_list = [ 
     {
         "user_id": 1,
         "user_email": "dero@mit.edu",
@@ -43,3 +43,4 @@ class AllUsers(Resource):
         if users_record.users_list:
             return users_record.users_list
         return {"error": "Users record empty."}, 400
+        
