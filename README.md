@@ -1,6 +1,7 @@
 # sendApi
 [![Build Status](https://travis-ci.org/neelxie/sendApi.svg?branch=features)](https://travis-ci.org/neelxie/sendApi)
 [![Maintainability](https://api.codeclimate.com/v1/badges/ec4df4bc881ee34bf6a2/maintainability)](https://codeclimate.com/github/neelxie/sendApi/maintainability)
+[![Coverage Status](https://coveralls.io/repos/github/neelxie/flask-api/badge.svg?branch=develop)](https://coveralls.io/github/neelxie/sendApi?branch=features)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/ec4df4bc881ee34bf6a2/test_coverage)](https://codeclimate.com/github/neelxie/sendApi/test_coverage)
 
 SendIT is a courier service that helps users deliver parcels to different destinations.
@@ -8,13 +9,15 @@ SendIT is a courier service that helps users deliver parcels to different destin
 # Application Demo 
 
 <b>This site has been built with</b>
-* Python
+Python
 <b>Serverside Framework</b>
-* Flask /Flask Restful
+Flask /Flask Restful
 <b>Testing Framework</b>
-* Pytest
+Pytest
 <b>Linting Framework</b>
-* Pylint
+Pylint
+<b>Style GuideLine</b>
+Autopep8
 
 # Features
 
@@ -38,3 +41,6 @@ SendIT is a courier service that helps users deliver parcels to different destin
  * I thank GOD, to whom everything plays out.
  * I thank all fellow bootcampers for the help offered to better me.
  * I would like to thank Andela for the opportunity to change the world.
+
+# Author
+ * Sekidde Derrick

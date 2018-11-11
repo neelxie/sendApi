@@ -1,8 +1,6 @@
-""" stuff """
-from flask import Flask
+""" File contains my app routes """
 from flask import Blueprint
 from flask_restful import Api
-from flask_restful import Resource
 from sendit.views.index_view import Index
 from sendit.views.user_view import OneUser
 from sendit.views.user_view import AllUsers

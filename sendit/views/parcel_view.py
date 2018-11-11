@@ -9,7 +9,7 @@ parcels_record = Parcels()
 authenticate = AuthenticateView()
 
 # parcels_record.parcels_list = []
-parcels_record.parcels_list = [ 
+parcels_record.parcels_list = [
     {
         "parcel_id": 1,
         "user_id": 2,
@@ -39,7 +39,7 @@ parcels_record.parcels_list = [
         "destination": "DHL",
         "price_quote": 500,
         "status": "Delivered"
-    } 
+    }
 ]
 
 def get_parcel_by_id(parcel_id):
@@ -53,12 +53,11 @@ class OneParcel(Resource):
 
     def get(self, parcel_id):
         """ Method to get a parcel by ID."""
-        if not parcels_record.parcels_list:
-            return {"error": "parcels record empty."}, 400
-        specific_parcel = get_parcel_by_id(parcel_id)
-        if not specific_parcel:
-            return {"error": "parcel not found"}, 400
-        return specific_parcel
+        if parcels_record.parcels_list:
+            specific_parcel = get_parcel_by_id(parcel_id)
+            if not specific_parcel:
+                return {"error": "parcel not found"}, 400
+            return specific_parcel
 
 class UserParcels(Resource):
     """ class for all parcels from single user."""
@@ -95,23 +94,30 @@ class CancelParcel(Resource):
 
 
 parser = RequestParser(bundle_errors=True)
-parser.add_argument("parcel_id", type=int, default=1, required=True, help="parcel_id has to be an int.")
-parser.add_argument("user_id", type=int, default=1, required=True, help="user_id has to be an int.")
-parser.add_argument("user_email", type=str, required=True, help="user_email has to be valid string.")
-parser.add_argument("parcel_weight", type=int, default=1, required=True, help="parcel_weight has to be an int.")
-parser.add_argument("pick_up_location", type=str, required=True, help="pick_up_location has to be a valid string")
-parser.add_argument("destination", type=str, required=True, help="destination has to be a valid string")
-parser.add_argument("price_quote", type=int, default=1, required=True, help="price_quote has to be an int.")
-parser.add_argument("status", type=str, required=True, help="Status has to be a valid string")
-
+parser.add_argument("parcel_id", type=int, default=1,
+                    required=True, help="parcel_id has to be an int.")
+parser.add_argument("user_id", type=int, default=1,
+                    required=True, help="user_id has to be an int.")
+parser.add_argument("user_email", type=str, required=True,
+                    help="user_email has to be valid string.")
+parser.add_argument("parcel_weight", type=int, default=1,
+                    required=True, help="parcel_weight has to be an int.")
+parser.add_argument("pick_up_location", type=str, required=True,
+                    help="pick_up_location has to be a valid string")
+parser.add_argument("destination", type=str, required=True,
+                    help="destination has to be a valid string")
+parser.add_argument("price_quote", type=int, default=1,
+                    required=True, help="price_quote has to be an int.")
+parser.add_argument("status", type=str, required=True,
+                    help="Status has to be a valid string")
 
 class AllParcels(Resource):
     """ class for all parcels."""
+
     def get(self):
         """ Method to return all parcels in the record."""
         if parcels_record.parcels_list:
             return parcels_record.parcels_list
-        return {"error": "parcels record empty."}, 400
 
     def post(self):
         """ Method to add an parcel in the record."""

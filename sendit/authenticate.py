@@ -1,3 +1,4 @@
+""" File contains methods to authenticate my views. """
 class AuthenticateView:
     """ Class to authenticate views."""
 
