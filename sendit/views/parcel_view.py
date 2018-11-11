@@ -65,8 +65,8 @@ class UserParcels(Resource):
     def get(self, user_id):
         """ Method to get a parcel by ID."""
         user = get_user_by_id(user_id)
+        individual_parcels = []
         if user:
-            individual_parcels = []
             for parcel in parcels_record.parcels_list:
                 if parcel.get("user_id") == int(user_id):
                     individual_parcels.append(parcel)
