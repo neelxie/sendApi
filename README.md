@@ -1,37 +1,47 @@
 # sendApi
 [![Build Status](https://travis-ci.org/neelxie/sendApi.svg?branch=features)](https://travis-ci.org/neelxie/sendApi)
+[![Coverage Status](https://coveralls.io/repos/github/neelxie/sendApi/badge.svg?branch=features)](https://coveralls.io/github/neelxie/sendApi?branch=features)
 [![Maintainability](https://api.codeclimate.com/v1/badges/ec4df4bc881ee34bf6a2/maintainability)](https://codeclimate.com/github/neelxie/sendApi/maintainability)
-[![Coverage Status](https://coveralls.io/repos/github/neelxie/flask-api/badge.svg?branch=develop)](https://coveralls.io/github/neelxie/sendApi?branch=features)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/ec4df4bc881ee34bf6a2/test_coverage)](https://codeclimate.com/github/neelxie/sendApi/test_coverage)
 
 SendIT is a courier service that helps users deliver parcels to different destinations.
 
-# Application Demo 
+<b> Site has been built with.</b>
+ * Language - Python
+ * Serverside Framework - Flask /Flask Restful
+ * Testing Framework - Pytest
+ * Linting Framework - Pylint
+ * Style GuideLine - Autopep8
 
-<b>This site has been built with</b>
-Python
-<b>Serverside Framework</b>
-Flask /Flask Restful
-<b>Testing Framework</b>
-Pytest
-<b>Linting Framework</b>
-Pylint
-<b>Style GuideLine</b>
-Autopep8
+# Application Demo 
+ * UserInterface - https://neelxie.github.io/SendIT/UI/
+ * Heroku - https://mysenditapp.herokuapp.com/api/v1/
 
 # Features
 
-  * Create a parcel delivery order.
-  * Cancel a parcel delivery order.
-  * View all parcel delivery orders.
-  * View a specific delivery order.
-  * View all parcel delivery orders of a user.
+  * Fetch all parcel delivery orders - https://mysenditapp.herokuapp.com/api/v1/parcels
+  * Fetch a specific parcel delivery order - https://mysenditapp.herokuapp.com/api/v1/parcels/<parcel_id>
+  * Get all parcel delivery orders by a specific user - https://mysenditapp.herokuapp.com/api/v1/users/<user_id>/parcels
+  * Cancel the specific parcel delivery order - https://mysenditapp.herokuapp.com/api/v1/parcels/<parcel_id>/cancel
+  * Create a parcel delivery order. https://mysenditapp.herokuapp.com/api/v1/parcels
 
-
-# How to use:
+# Installation:
  * Clone git repo to local directory -- https://github.com/neelxie/SendApi.git
- * Git checkout features
+ * cd SendApi
+ * Create a virtual environment:
+  - virtualenv myenv
+ * Activate virtual environment:
+  - myenv\Scripts\activate
+ * Install dependencies:
+  - pip install -r requirements.txt
+ * Do not forget to run this in the features branch:
+  - Git checkout features
+
+# Running the application:
  * 'Python run.py'
+
+# Running the tests:
+ * Pytest --cov=.
 
 # Contribute
  * Join me and let us create super amazing stuff together.
