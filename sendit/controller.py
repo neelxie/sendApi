@@ -1,0 +1,1 @@
+from .routes.index_route import home
