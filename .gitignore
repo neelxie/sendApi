@@ -1,0 +1,7 @@
+*.pyc
+__pycache__/
+build/
+home/
+.vscode/
+coverage/
+env/
