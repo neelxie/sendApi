@@ -1,6 +1,7 @@
 """ Parcels view file of the SendIT app."""
 from sendit.models.parcel_model import Parcels
 from flask import jsonify
+from flask import request
 
 obj_parcel = Parcels()
 obj_parcel.parcels_list = [
@@ -53,3 +54,12 @@ class ParcelView:
                 return jsonify({"Parcel": specific_parcel})
             return jsonify({"error": "No parcel by that ID in Parcels list."})
         return jsonify({"All Parcels": obj_parcel.parcels_list}), 200
+
+    def add_parcels(self):
+        """ Method to add a parcel."""
+        data = request.get_json()
+        if data:
+            data['parcel_id'] = len(obj_parcel.parcels_list) + 1
+            data['status'] = 'Transit'
+            obj_parcel.parcels_list.append(data)
+            return jsonify({"msg": "User added", "User_info": data}), 201
