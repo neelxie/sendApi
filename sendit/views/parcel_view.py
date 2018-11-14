@@ -44,3 +44,12 @@ class ParcelView:
         if not obj_parcel.parcels_list:
             return jsonify({"Message": "Parcels list is empty."}), 200
         return jsonify({"All Parcels": obj_parcel.parcels_list}), 200
+
+    def fetch_parcel_by_id(self, parcel_id):
+        """ Method to return parcel by ID."""
+        if obj_parcel.parcels_list:
+            specific_parcel = [parcel for parcel in obj_parcel.parcels_list if parcel.get("parcel_id") == int(parcel_id)]
+            if specific_parcel:
+                return jsonify({"Parcel": specific_parcel})
+            return jsonify({"error": "No parcel by that ID in Parcels list."})
+        return jsonify({"All Parcels": obj_parcel.parcels_list}), 200
