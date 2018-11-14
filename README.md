@@ -1,6 +1,6 @@
 # sendApi
 [![Build Status](https://travis-ci.org/neelxie/sendApi.svg?branch=develop)](https://travis-ci.org/neelxie/sendApi)
-[![Coverage Status](https://coveralls.io/repos/github/neelxie/sendApi/badge.svg?branch=develop)](https://coveralls.io/github/neelxie/sendApi?branch=features)
+[![Coverage Status](https://coveralls.io/repos/github/neelxie/sendApi/badge.svg?branch=develop)](https://coveralls.io/github/neelxie/sendApi?branch=develop)
 [![Maintainability](https://api.codeclimate.com/v1/badges/ec4df4bc881ee34bf6a2/maintainability)](https://codeclimate.com/github/neelxie/sendApi/maintainability)
 
 SendIT is a courier service that helps users deliver parcels to different destinations.
