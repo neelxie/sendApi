@@ -1,0 +1,13 @@
+[report]
+omit = 
+      env/*
+      */python?.?/*
+      */__pycache__/
+       *.py[cod]
+       *$py.class
+      */.pyc
+      */.pytest_cache/*
+      */myenv
+      *myenv/
+      */simplejson/*
+      */usr/lib/python3/dist-packages/*
