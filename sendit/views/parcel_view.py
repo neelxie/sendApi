@@ -62,4 +62,20 @@ class ParcelView:
             data['parcel_id'] = len(obj_parcel.parcels_list) + 1
             data['status'] = 'Transit'
             obj_parcel.parcels_list.append(data)
-            return jsonify({"msg": "User added", "User_info": data}), 201
+            return jsonify({"msg": "User added", "Parcel_info": data}), 201
+
+    def cancel_specific_parcel(self, parcel_id):
+        """ Method to cancel a parcel."""
+        data = 0
+        args = request.get_json()
+        for my_parcel in obj_parcel.parcels_list:
+            if my_parcel.get("parcel_id") == int(parcel_id):
+                data = my_parcel
+        if data:
+            if data['status'] == 'Canceled' or data['status'] == 'Delivered':
+                return jsonify({"error": "Can not cancel an already canceled or delivered parcel order."})
+            obj_parcel.parcels_list.remove(data)
+            args['status'] = "Canceled"
+            obj_parcel.parcels_list.append(args)
+            return jsonify({"msg": "Parcel delivery order canceled.", "Parcel_info": args}), 200
+        return jsonify({"error": "Can not cancel non existant parcel order."})
