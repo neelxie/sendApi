@@ -13,3 +13,8 @@ def get_parcels():
 def get_single_parcel(parcel_id):
     """ Method route to Parcel by ID """
     return obj_parcel_views.fetch_parcel_by_id(parcel_id)
+
+@app.route('/api/v1/parcels', methods=["POST"])
+def create_parcel():
+    """ Method route to Parcel by ID """
+    return obj_parcel_views.add_parcels()
