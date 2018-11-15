@@ -10,21 +10,20 @@ def check_user(user_id):
     for user in list_of_users:
         if user.get("user_id") == int(user_id):
             return user
-            
+
 def personal_orders(user_id):
     """ Method to return list of orders for a single user."""
     individual_parcels = []
-    if all_parcels:
-        for parcel in all_parcels:
-            if parcel.get("user_id") == int(user_id):
-                individual_parcels.append(parcel)
-                return individual_parcels
+    for parcel in all_parcels:
+        if parcel.get("user_id") == int(user_id):
+            individual_parcels.append(parcel)
+            return individual_parcels
 
 class Users:
     """ Model class for users. """
     def __init__(self):
         """ Initialisation method for users class."""
-        self.user_list = []
+        pass
 
     def fetch_users(self):
         """ Method to return all users."""

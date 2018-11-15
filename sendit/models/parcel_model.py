@@ -19,16 +19,25 @@ def all_int(one, two, three):
     return False
 
 def valid_string(one, two, three):
-    """ method to check whether all inputs are strings with a length greater than one.
+    """ method to check whether all inputs are strings.
     """
     if not isinstance(one, str) or not isinstance(
             two, str) or not isinstance(three, str):
         return True
     if one.isspace() or two.isspace() or three.isspace():
         return True
+    return False
+
+def my_str_len(one, two, three):
+    """ method to check string length. """
     if len(one) < 1 or len(two) < 1 or len(three) < 1:
         return True
     if not two.isalpha() or not three.isalpha():
+        return True
+    return False
+
+def authenticate(one, two, three):
+    if valid_string(one, two, three) or my_str_len(one, two, three):
         return True
     return False
 
@@ -73,7 +82,7 @@ class Parcels:
                     return jsonify(
                         {"error": "User ID, Parcel weight and Price quote must be an int."})
 
-                if valid_string(user_email, pick_up_location, destination):
+                if authenticate(user_email, pick_up_location, destination):
                     return jsonify(
                         {"Error": "User Email, Pickup location and Destination must be of variable type string."})
 

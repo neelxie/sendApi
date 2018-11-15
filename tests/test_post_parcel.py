@@ -63,8 +63,6 @@ class TestPostParcel(unittest.TestCase):
             resp.data, b'{"msg":"Parcel has been added"}\n')
 
 
-    """ Test get all parcels endpoint """
-
     def test_get_all_nonexistant_user_parcels(self):
         """ Test method to retrieve parcels of non existant user."""
         resp = self.app.get('/api/v1/users/9/parcels')
