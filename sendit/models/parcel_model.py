@@ -4,10 +4,39 @@ from flask import request
 
 all_parcels = []
 
+def get_parcel_by_id(parcel_id):
+    """ Check parcel list for a parcel with this ID."""
+    for parcel in all_parcels:
+        if parcel.get("parcel_id") == int(parcel_id):
+            return parcel
+
+def all_int(one, two, three):
+    """
+    method to check if all arguments are ints else return false. """
+    if not isinstance(one, int) or not isinstance(
+            two, int) or not isinstance(three, int):
+        return True
+    return False
+
+def valid_string(one, two, three):
+    """ method to check whether all inputs are strings with a length greater than one.
+    """
+    if not isinstance(one, str) or not isinstance(
+            two, str) or not isinstance(three, str):
+        return True
+    if one.isspace() or two.isspace() or three.isspace():
+        return True
+    if len(one) < 1 or len(two) < 1 or len(three) < 1:
+        return True
+    if not two.isalpha() or not three.isalpha():
+        return True
+    return False
+
 class Parcels:
     """ Model class for parcels. """
     def __init__(self):
         """ Initialisation method for parcels class."""
+        pass
 
     def fetch_all_parcels(self):
         """ Method to return all parcels."""
@@ -18,8 +47,7 @@ class Parcels:
     def fetch_parcel_by_id(self, parcel_id):
         """ Method to return parcel by ID."""
         if all_parcels:
-            specific_parcel = [parcel for parcel in all_parcels if parcel.get(
-                "parcel_id") == int(parcel_id)]
+            specific_parcel = get_parcel_by_id(parcel_id)
             if specific_parcel:
                 return jsonify({"Parcel": specific_parcel}), 200
             return jsonify({"error": "No parcel by that ID in Parcels list."})
@@ -41,19 +69,13 @@ class Parcels:
                 destination = data.get("destination")
                 price_quote = data.get("price_quote")
 
-                if not isinstance(user_id, int) or not isinstance(
-                        parcel_weight, int) or not isinstance(price_quote, int):
+                if all_int(user_id, parcel_weight, price_quote):
                     return jsonify(
                         {"error": "User ID, Parcel weight and Price quote must be an int."})
 
-                if not isinstance(user_email, str) or not isinstance(
-                        pick_up_location, str) or not isinstance(destination, str):
+                if valid_string(user_email, pick_up_location, destination):
                     return jsonify(
                         {"Error": "User Email, Pickup location and Destination must be of variable type string."})
-
-                if pick_up_location.isspace() or not pick_up_location.isalpha() or destination.isspace() or not destination.isalpha():
-                    return jsonify(
-                        {"Error": "The Pickup location and Destination must be string with letters."})
 
                 all_parcels.append(data)
                 return jsonify({"msg":"Parcel has been added"}), 201
@@ -61,10 +83,7 @@ class Parcels:
 
     def cancel_specific_parcel(self, parcel_id):
         """ Method to cancel a parcel."""
-        data = 0
-        for my_parcel in all_parcels:
-            if my_parcel.get("parcel_id") == int(parcel_id):
-                data = my_parcel
+        data = get_parcel_by_id(parcel_id)
         if data:
             if data['status'] == 'Canceled' or data['status'] == 'Delivered':
                 return jsonify(

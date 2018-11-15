@@ -5,6 +5,21 @@ from .parcel_model import all_parcels
 
 list_of_users = []
 
+def check_user(user_id):
+    """ Check for a user with this as ID."""
+    for user in list_of_users:
+        if user.get("user_id") == int(user_id):
+            return user
+            
+def personal_orders(user_id):
+    """ Method to return list of orders for a single user."""
+    individual_parcels = []
+    if all_parcels:
+        for parcel in all_parcels:
+            if parcel.get("user_id") == int(user_id):
+                individual_parcels.append(parcel)
+                return individual_parcels
+
 class Users:
     """ Model class for users. """
     def __init__(self):
@@ -20,7 +35,7 @@ class Users:
     def fetch_single_user_id(self, user_id):
         """ Method to return user by ID."""
         if list_of_users:
-            specific_user = [user for user in list_of_users if user.get("user_id") == int(user_id)]
+            specific_user = check_user(user_id)
             if specific_user:
                 return jsonify({"user": specific_user})
             return jsonify({"error": "No user by that ID in users list."})
@@ -35,16 +50,10 @@ class Users:
 
     def specific_user_pancels(self, user_id):
         """ Method to cancel a user parcel delivery order."""
-        user = 0
-        individual_parcels = []
-        for my_user in list_of_users:
-            if my_user.get("user_id") == int(user_id):
-                user = my_user
+        user = check_user(user_id)
+        parcel_order = personal_orders(user_id)
         if user:
-            for parcel in all_parcels:
-                if parcel.get("user_id") == int(user_id):
-                    individual_parcels.append(parcel)
-            if individual_parcels:
-                return jsonify(individual_parcels)
+            if parcel_order:
+                return jsonify(parcel_order[0])
             return jsonify({"message": "User has no parcels yet."})
         return jsonify({"error": "User not found"})

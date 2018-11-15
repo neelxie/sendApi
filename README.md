@@ -9,7 +9,7 @@ SendIT is a courier service that helps users deliver parcels to different destin
 
 <b> Site has been built with.</b>
 *   Language - Python
-*   Serverside Framework - Flask /Flask Restful
+*   Serverside Framework - Flask 
 *   Testing Framework - Pytest
 *   Linting Framework - Pylint
 *   Style GuideLine - Autopep8
@@ -20,41 +20,45 @@ SendIT is a courier service that helps users deliver parcels to different destin
 
 # Features
 
-  | REQUESTS     | APP ROUTES                          | FUNCTION                                                  
-  |--------------|--------------------------------------------------------------------------------------------|
-  |  GET         | /api/v1/parcels                     | Fetch all parcel delivery orders.                    |
-  |  GET         | /api/v1/parcels/[parcel_id]         | Fetch parcel delivery order by id.                   |
-  |  GET         | /api/v1/users/[user_id]/parcels     | Fetch all parcel delivery orders by a specific user. |
-  |  PUT         | /api/v1/parcels/[parce_id]/cancel   | Cancel a specific parcel delivery order.             |
-  |  POST        | /api/v1/parcels                     | Create a parcel delivery order.                      |
-  |  POST        | /api/v1/users                       | Create a SendIT App user.                            |  
+  | REQUESTS     | APP ROUTES                           | FUNCTION                                             |
+  |--------------|---------------------------------------------------------------------------------------------|
+  |  GET         |  /api/v1/parcels                     | Fetch all parcel delivery orders.                    |
+  |  GET         |  /api/v1/parcels/[parcel_id]         | Fetch parcel delivery order by id.                   |
+  |  GET         |  /api/v1/users/[user_id]/parcels     | Fetch all parcel delivery orders by a specific user. |
+  |  PUT         |  /api/v1/parcels/[parce_id]/cancel   | Cancel a specific parcel delivery order.             |
+  |  POST        |  /api/v1/parcels                     | Create a parcel delivery order.                      |
+  |  POST        |  /api/v1/users                       | Create a SendIT App user.                            |  
 
 # Installation:
 
 *  Clone git repo to local directory ``` https://github.com/neelxie/SendApi.git ```
 ``` cd SendApi ```
-*  Create a virtual environment:
+
+*  Create a virtual environment
 ``` virtualenv env ```
-*  Activate virtual environment:
+
+*  Activate virtual environment
 ``` env\Scripts\activate ```
-*  Install dependencies:
+
+*  Install dependencies
 ``` pip install -r requirements.txt ```
-*  Do not forget to run this in the develop branch:
+
+*  Do not forget to run this in the develop branch
 ``` git checkout develop ```
 
 # Running the application:
 
-Inside the SendApi folder.
+*   Inside the SendApi folder run this command.
 ``` python run.py ```
 
 # Running the tests:
 
-*  Run this command in the project directory.
+*   Run this command in the project directory.
 ``` pytest ```
 
-#Deployment
+# Deployment
 
-*  This app has been deployed on Heroku at the url below:
+*  This app has been deployed on Heroku at the url below
 ``` https://mysenditapp.herokuapp.com/api/v1/ ```
 
 # Contribute
@@ -64,10 +68,10 @@ Inside the SendApi folder.
 
 # Credits
 
-*  I thank GOD, to whom everything plays out.
-*  I thank all fellow bootcampers for the help offered to better me.
-*  I would like to thank Andela for the opportunity to change the world.
+*   I thank GOD, to whom everything plays out.
+*   I thank all fellow bootcampers for the help offered to better me.
+*   I would like to thank Andela for the opportunity to change the world.
 
 # Author
 
-*  Sekidde Derrick
+*   Sekidde Derrick
