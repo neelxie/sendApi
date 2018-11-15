@@ -4,5 +4,4 @@ from flask import Flask
 app = Flask(__name__)
 
 from .views.parcel_view import *
-from .views.index_view import *
 from .views.user_view import *

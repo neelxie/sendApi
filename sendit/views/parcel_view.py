@@ -4,6 +4,11 @@ from ..models.parcel_model import Parcels
 
 my_parcels = Parcels()
 
+@app.route('/api/v1/')
+def home():
+    """ Index route for app."""
+    return "Welcome to the SendIT Courier App."
+
 @app.route('/api/v1/parcels', methods=["GET"])
 def get_parcels():
     """ Method route to get all Parcels """

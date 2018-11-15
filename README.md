@@ -6,7 +6,6 @@ SendIT is a courier service that helps users deliver parcels to different destin
 [![Coverage Status](https://coveralls.io/repos/github/neelxie/sendApi/badge.svg?branch=develop)](https://coveralls.io/github/neelxie/sendApi?branch=develop)
 [![Maintainability](https://api.codeclimate.com/v1/badges/ec4df4bc881ee34bf6a2/maintainability)](https://codeclimate.com/github/neelxie/sendApi/maintainability)
 
-
 <b> Site has been built with.</b>
 *   Language - Python
 *   Serverside Framework - Flask 
@@ -29,7 +28,7 @@ SendIT is a courier service that helps users deliver parcels to different destin
   |  POST        |  /api/v1/parcels                     | Create a parcel delivery order.                      |
   |  POST        |  /api/v1/users                       | Create a SendIT App user.                            |  
 
-# Installation:
+# Installation
 
 *  Clone git repo to local directory ``` https://github.com/neelxie/SendApi.git ```
 ``` cd SendApi ```
@@ -46,12 +45,12 @@ SendIT is a courier service that helps users deliver parcels to different destin
 *  Do not forget to run this in the develop branch
 ``` git checkout develop ```
 
-# Running the application:
+# Running the application
 
 *   Inside the SendApi folder run this command.
 ``` python run.py ```
 
-# Running the tests:
+# Running the tests
 
 *   Run this command in the project directory.
 ``` pytest ```
