@@ -6,23 +6,7 @@ from flask import request
 
 users_record = Users()
 
-users_record.users_list = [
-    {
-        "user_id": 1,
-        "user_email": "dero@mit.edu",
-        "user_name": "Deliki"
-    },
-    {
-        "user_id": 2,
-        "user_email": "derek@fbi.gov",
-        "user_name": "Derek"
-    },
-    {
-        "user_id": 3,
-        "user_email": "hack@cia.gov",
-        "user_name": "Haqa"
-    }
-]
+users_record.users_list = []
 
 class UserView:
     """ Users class for views."""

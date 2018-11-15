@@ -4,38 +4,7 @@ from flask import request
 from sendit.models.parcel_model import Parcels
 
 obj_parcel = Parcels()
-obj_parcel.parcels_list = [
-    {
-        "parcel_id": 1,
-        "user_id": 2,
-        "user_email": "derek@fbi.gov",
-        "parcel_weight": 15,
-        "pick_up_location": "kisasi",
-        "destination": "Andela",
-        "price_quote": 200,
-        "status": "Transit"
-    },
-    {
-        "parcel_id": 2,
-        "user_id": 1,
-        "user_email": "dero@mit.edu",
-        "parcel_weight": 55,
-        "pick_up_location": "work",
-        "destination": "home",
-        "price_quote": 300,
-        "status": "Canceled"
-    },
-    {
-        "parcel_id": 3,
-        "user_id": 2,
-        "user_email": "derek@fbi.gov",
-        "parcel_weight": 35,
-        "pick_up_location": "Posta",
-        "destination": "DHL",
-        "price_quote": 500,
-        "status": "Delivered"
-    }
-]
+obj_parcel.parcels_list = []
 
 
 class ParcelView:
@@ -86,7 +55,6 @@ class ParcelView:
                 if pick_up_location.isspace() or not pick_up_location.isalpha() or destination.isspace() or not destination.isalpha():
                     return jsonify(
                         {"Error": "The Pickup location and Destination must be string with letters."})
-             
 
                 obj_parcel.parcels_list.append(data)
                 return jsonify({"msg":"Parcel has been added"}), 201

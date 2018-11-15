@@ -8,26 +8,26 @@ SendIT is a courier service that helps users deliver parcels to different destin
 
 
 <b> Site has been built with.</b>
-*  Language - Python
-*  Serverside Framework - Flask /Flask Restful
-*  Testing Framework - Pytest
-*  Linting Framework - Pylint
-*  Style GuideLine - Autopep8
+*   Language - Python
+*   Serverside Framework - Flask /Flask Restful
+*   Testing Framework - Pytest
+*   Linting Framework - Pylint
+*   Style GuideLine - Autopep8
 
 # Application Demo 
 
-*  UserInterface ``` https://neelxie.github.io/SendIT/UI/ ```
+*   UserInterface ``` https://neelxie.github.io/SendIT/UI/ ```
 
 # Features
 
   | REQUESTS     | APP ROUTES                          | FUNCTION                                                  
   |--------------|--------------------------------------------------------------------------------------------|
-  |  GET         | /api/v1/parcels                     | Fetch all parcel delivery orders.                                
-  |  GET         | /api/v1/parcels/[parcel_id]         | Fetch parcel delivery order by id.                          
-  |  GET         | /api/v1/users/[user_id]/parcels     | Fetch all parcel delivery orders by a specific user.        
-  |  PUT         | /api/v1/parcels/[parce_id]/cancel   | Cancel a specific parcel delivery order.                 
-  |  POST        | /api/v1/parcels                     | Create a parcel delivery order.                          
-  |  POST        | /api/v1/users                       | Create a SendIT App user.                                  
+  |  GET         | /api/v1/parcels                     | Fetch all parcel delivery orders.                    |
+  |  GET         | /api/v1/parcels/[parcel_id]         | Fetch parcel delivery order by id.                   |
+  |  GET         | /api/v1/users/[user_id]/parcels     | Fetch all parcel delivery orders by a specific user. |
+  |  PUT         | /api/v1/parcels/[parce_id]/cancel   | Cancel a specific parcel delivery order.             |
+  |  POST        | /api/v1/parcels                     | Create a parcel delivery order.                      |
+  |  POST        | /api/v1/users                       | Create a SendIT App user.                            |  
 
 # Installation:
 
