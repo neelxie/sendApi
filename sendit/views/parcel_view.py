@@ -11,20 +11,20 @@ def home():
 
 @app.route('/api/v1/parcels', methods=["GET"])
 def get_parcels():
-    """ Method route to get all Parcels """
-    return my_parcels.fetch_all_parcels()
+    """ Method route to fetch all Parcels """
+    return my_parcels.get_all_app_parcels()
 
 @app.route('/api/v1/parcels/<int:parcel_id>', methods=["GET"])
 def get_single_parcel(parcel_id):
-    """ Method route to get Parcel by ID """
+    """ App route to get Parcel by ID """
     return my_parcels.fetch_parcel_by_id(parcel_id)
 
 @app.route('/api/v1/parcels', methods=["POST"])
 def create_parcel():
-    """ Method route to create a Parcel."""
+    """ Route to create a Parcel."""
     return my_parcels.add_parcels()
 
 @app.route('/api/v1/parcels/<int:parcel_id>/cancel', methods=["PUT"])
 def cancel_parcel(parcel_id):
-    """ Method route to cancel a Parcel."""
+    """ This is a method route to cancel a Parcel delivery order."""
     return my_parcels.cancel_specific_parcel(parcel_id)

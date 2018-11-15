@@ -21,9 +21,11 @@ def personal_orders(user_id):
 
 class Users:
     """ Model class for users. """
-    def __init__(self):
+    def __init__(self, user_id, user_email, user_name):
         """ Initialisation method for users class."""
-        pass
+        self.user_id = user_id
+        self.user_email = user_email
+        self.user_name = user_name
 
     def fetch_users(self):
         """ Method to return all users."""
@@ -41,11 +43,20 @@ class Users:
 
     def add_app_user(self):
         """ Method to add a user."""
-        data = request.get_json()
-        if data:
-            data['user_id'] = len(list_of_users) + 1
-            list_of_users.append(data)
-            return jsonify({"msg": "User added"}), 201
+        user_info = request.get_json()
+
+        if user_info:
+            user_info['user_id'] = len(list_of_users) + 1
+            user_strs = ("user_email", "user_name")
+
+            if all(key in user_info.keys() for key in user_strs):
+                user_email = user_info.get("user_email")
+                user_name = user_info.get("user_name")
+                if len(user_email) < 2 or not user_name.isalpha():
+                    return jsonify({"Error": "User Email and User name must be of valid string."})
+                list_of_users.append(user_info)
+                return jsonify({"msg": "User added"}), 201
+            return jsonify({"error": "field missing."})
 
     def specific_user_pancels(self, user_id):
         """ Method to cancel a user parcel delivery order."""

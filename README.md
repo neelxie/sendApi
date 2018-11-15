@@ -19,14 +19,14 @@ SendIT is a courier service that helps users deliver parcels to different destin
 
 # Features
 
-  | REQUESTS     | APP ROUTES                           | FUNCTION                                             |
-  |--------------|---------------------------------------------------------------------------------------------|
-  |  GET         |  /api/v1/parcels                     | Fetch all parcel delivery orders.                    |
-  |  GET         |  /api/v1/parcels/[parcel_id]         | Fetch parcel delivery order by id.                   |
-  |  GET         |  /api/v1/users/[user_id]/parcels     | Fetch all parcel delivery orders by a specific user. |
-  |  PUT         |  /api/v1/parcels/[parce_id]/cancel   | Cancel a specific parcel delivery order.             |
-  |  POST        |  /api/v1/parcels                     | Create a parcel delivery order.                      |
-  |  POST        |  /api/v1/users                       | Create a SendIT App user.                            |  
+REQUESTS    | APP ROUTES                           | FUNCTION                                             
+------------|--------------------------------------|------------------------------------------------------
+GET         |  /api/v1/parcels                     | Fetch all parcel delivery orders.
+GET         |  /api/v1/parcels/[parcel_id]         | Fetch parcel delivery order by id.
+GET         |  /api/v1/users/[user_id]/parcels     | Fetch all parcel delivery orders by a specific user. 
+PUT         |  /api/v1/parcels/[parce_id]/cancel   | Cancel a specific parcel delivery order.
+POST        |  /api/v1/parcels                     | Create a parcel delivery order. 
+POST        |  /api/v1/users                       | Create a SendIT App user. 
 
 # Installation
 

@@ -10,45 +10,44 @@ def get_parcel_by_id(parcel_id):
         if parcel.get("parcel_id") == int(parcel_id):
             return parcel
 
-def all_int(one, two, three):
+def all_int(first, second, third):
     """
     method to check if all arguments are ints else return false. """
-    if not isinstance(one, int) or not isinstance(
-            two, int) or not isinstance(three, int):
+    if not isinstance(first, int) or not isinstance(
+            second, int) or not isinstance(third, int):
         return True
     return False
 
 def valid_string(one, two, three):
     """ method to check whether all inputs are strings.
     """
-    if not isinstance(one, str) or not isinstance(
-            two, str) or not isinstance(three, str):
+    if not isinstance(one, str) or not isinstance(two, str) or not isinstance(three, str):
         return True
     if one.isspace() or two.isspace() or three.isspace():
         return True
     return False
 
-def my_str_len(one, two, three):
+def my_str_len(un, deux, trois):
     """ method to check string length. """
-    if len(one) < 1 or len(two) < 1 or len(three) < 1:
+    if len(un) < 1 or len(deux) < 1 or len(trois) < 1:
         return True
-    if not two.isalpha() or not three.isalpha():
+    if not deux.isalpha() or not trois.isalpha():
         return True
     return False
 
-def authenticate(one, two, three):
-    if valid_string(one, two, three) or my_str_len(one, two, three):
+def authenticate(ling, yi, san):
+    if valid_string(ling, yi, san) or my_str_len(ling, yi, san):
         return True
     return False
 
 class Parcels:
     """ Model class for parcels. """
-    def __init__(self):
+    def __init__(self, *args):
         """ Initialisation method for parcels class."""
-        pass
+        
 
-    def fetch_all_parcels(self):
-        """ Method to return all parcels."""
+    def get_all_app_parcels(self):
+        """ This is a class method to return all parcels."""
         if not all_parcels:
             return jsonify({"Message": "Parcels list is empty."}), 200
         return jsonify({"All Parcels": all_parcels}), 200

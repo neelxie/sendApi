@@ -109,8 +109,7 @@ class TestPostParcel(unittest.TestCase):
 
     def test_nonexistant_parcel(self):
         """ Test method to test non existant parcel by id."""
-        resp = self.app.get(
-            '/api/v1/parcels/<parcel_id>')
+        resp = self.app.get('/api/v1/parcels/<parcel_id>')
         self.assertEqual(resp.status_code, 404)
 
     def tearDown(self):
