@@ -9,6 +9,11 @@ class TestAllParcels(unittest.TestCase):
         """ set up method for test cases."""
         self.app = app.test_client()
 
+    def test_index_endpoint(self):
+        """ Test method to test index endpoint of the app."""
+        response = self.app.get('/api/v1/')
+        self.assertEqual(response.status_code, 200)
+
     def test_get_all_parcels(self):
         """ Test method to test index endpoint of the app."""
         response = self.app.get('/api/v1/parcels')

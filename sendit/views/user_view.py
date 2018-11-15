@@ -39,7 +39,6 @@ class UserView:
             if specific_user:
                 return jsonify({"user": specific_user})
             return jsonify({"error": "No user by that ID in users list."})
-        return jsonify({"All users": users_record.users_list}), 200
 
     def add_app_user(self):
         """ Method to add a user."""
@@ -47,10 +46,10 @@ class UserView:
         if data:
             data['user_id'] = len(users_record.users_list) + 1
             users_record.users_list.append(data)
-            return jsonify({"msg": "User added", "user_info": data}), 201
+            return jsonify({"msg": "User added"}), 201
 
     def specific_user_pancels(self, user_id):
-        """ Method to cancel a user."""
+        """ Method to cancel a user parcel delivery order."""
         user = 0
         individual_parcels = []
         for my_user in users_record.users_list:
