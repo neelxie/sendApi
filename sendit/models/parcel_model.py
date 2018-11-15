@@ -44,7 +44,7 @@ class Parcels:
     """ Model class for parcels. """
     def __init__(self, *args):
         """ Initialisation method for parcels class."""
-        
+        pass
 
     def get_all_app_parcels(self):
         """ This is a class method to return all parcels."""
