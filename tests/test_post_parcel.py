@@ -65,21 +65,11 @@ class TestPostParcel(unittest.TestCase):
 
     """ Test get all parcels endpoint """
 
-    def test_get_all_user_by_id(self):
-        """ Test method to retrieve a user with id 1."""
-        resp = self.app.get('/api/v1/users/1')
-        self.assertEqual(resp.status_code, 200)
-
     def test_get_all_nonexistant_user_parcels(self):
         """ Test method to retrieve parcels of non existant user."""
         resp = self.app.get('/api/v1/users/9/parcels')
         self.assertEqual(resp.data, b'{"error":"User not found"}\n')
         self.assertEqual(resp.status_code, 200)
-
-    def test_get_user_with_zero_parcels(self):
-        """ Test method to retrieve a user with no parcel delivery orders yet."""
-        resp = self.app.get('/api/v1/users/3/parcels')
-        self.assertEqual(resp.data, b'{"message":"User has no parcels yet."}\n')
 
     def test_cancel_delivery_transit(self):
         """ Test method to cancel a delivery in transit."""
@@ -87,14 +77,6 @@ class TestPostParcel(unittest.TestCase):
                 {"parcel_id": 1, "user_id": 2, "user_email": "derek@fbi.gov", "parcel_weight": 15, "pick_up_location": "kisasi",
         "destination": "Andela", "price_quote": 200, "status": "Transit"}), content_type='application/json')
         self.assertEqual(resp.status_code, 200)
-
-    def test_cancel_delivery_canceled(self):
-        """ Cancel Test method to test an already canceled order."""
-        resp = self.app.put('/api/v1/parcels/1/cancel', data=json.dumps(
-            {"parcel_id": 1, "user_id": 2, "user_email": "derek@fbi.gov", "parcel_weight": 15, "pick_up_location": "kisasi",
-            "destination": "Andela", "price_quote": 200, "status": "Canceled"}), content_type='application/json')
-        self.assertEqual(
-            resp.data, b'{"error":"Can not cancel an already canceled or delivered parcel order."}\n')
 
     def test_cancel_nonexistant_parcel_delivery(self):
         """ Test method to cancel an nonexistant delivery."""

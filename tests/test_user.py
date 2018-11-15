@@ -9,11 +9,6 @@ class TestUser(unittest.TestCase):
         """ set up method for test cases."""
         self.app = app.test_client()
 
-    def test_get_all_user_by_id(self):
-        """ Test method to retrieve a user with id 1."""
-        resp = self.app.get('/api/v1/users/1')
-        self.assertEqual(resp.status_code, 200)
-
     def test_get_all_nonexistant_user_parcels(self):
         """ Test method to retrieve parcels of non existant user."""
         resp = self.app.get('/api/v1/users/9/parcels')

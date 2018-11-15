@@ -1,8 +1,7 @@
-""" Index file of the SendIT app."""
+""" File for index view."""
+from sendit import app
 
-class IndexView:
-    """ Index view class."""
-
-    def index(self):
-        """ Method of the app Home or app Index."""
-        return "Welcome to the SendIT Courier App."
+@app.route('/api/v1/')
+def home():
+    """ Index route for app."""
+    return "Welcome to the SendIT Courier App."
