@@ -58,7 +58,7 @@ POST        |  /api/v1/users                       | Create a SendIT App user.
 # Deployment
 
 *  This app has been deployed on Heroku at the url below
-``` https://mysenditapp.herokuapp.com/api/v1/ ```
+``` https://senditcourierapp.herokuapp.com/api/v1/ ```
 
 # Contribute
 
