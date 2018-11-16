@@ -42,9 +42,15 @@ def authenticate(ling, yi, san):
 
 class Parcels:
     """ Model class for parcels. """
-    def __init__(self, *args):
+    def __init__(self):
         """ Initialisation method for parcels class."""
-        pass
+        self.parcel_id = None
+        self.user_id = None
+        self.user_email = None
+        self.parcel_weight = None
+        self.pick_up_location = None
+        self.destination = None
+        self.price_quote = None
 
     def get_all_app_parcels(self):
         """ This is a class method to return all parcels."""

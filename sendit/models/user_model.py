@@ -21,9 +21,11 @@ def personal_orders(user_id):
 
 class Users:
     """ Model class for users. """
-    def __init__(self, *args):
-        """ Initialisation method for users class."""
-        pass
+    def __init__(self):
+        """ Initialisation method for user class."""
+        self.user_id = None
+        self.email = None
+        self.user_name = None
 
     def fetch_users(self):
         """ Method to return all users."""
